@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./echarts.min.js"></script>
+</head>
+<body>
+  <div id="main" style="width: 600px;height:400px;"></div>
+</body>
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('main'));
+
+  // 指定图表的配置项和数据
+  var option = {
+      legend: {
+        data: ['饼图','折线图','柱状图']
+      },
+      toolbox: {
+        feature: {
+          saveAsImage: {},
+        restore: {
+
+        },
+        dataZoom: {
+          yAxisIndex: false
+        },
+        }
+        
+      },
+      dataZoom: {
+        start: 50,
+        end: 100
+      },
+      grid: {
+        left: 100,
+        right: 100,
+        top: 100,
+        bottom: 100
+      },
+      dataset: {
+        source: [
+          ['一季度',20, 5,'分类一',50],
+          ['二季度',30, 20,'分类二',40],
+          ['三季度',36, 25,'分类三',70],
+          ['四季度',40, 35,'分类四',20],
+        ]
+      },
+      title: {
+          text: 'ECharts dataset',
+          subtext: '可视化组件'
+      },
+      xAxis: {
+        data:['一季度','二季度','三季度','四季度',]
+      },
+      yAxis: {},
+      series: [{
+        name: '饼图',
+        type: 'pie',
+        center: ['30%',80],
+        radius: 35,
+        encode: {itemName: 3,value:4}
+      },
+      {
+        name: '折线图',
+        type: 'line',
+        encode: {x: 0, y:1}
+      },
+
+      {
+        name: '柱状图',
+          type: 'bar',
+          encode: {x: 0,y:2}
+      }]
+  };
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(option);
+</script>
+</html>
