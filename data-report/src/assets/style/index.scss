@@ -1,22 +1,27 @@
-.echarts {
-  width: 100% !important;
-  height: 100% !important;
-}
+ html .echarts {
+   width: 100%;
+   height: 100%;
+ }
 
-.increase {
-  height: 0;
-  width: 0;
-  border-width: 3px;
-  border-color: transparent transparent red transparent;
-  border-style: solid;
-  margin: 3px 0 0 5px;
-}
+ .increase {
+   height: 0;
+   width: 0;
+   border-width: 3px;
+   border-color: transparent transparent red transparent;
+   border-style: solid;
+   margin: 3px 0 0 5px;
+ }
 
-.decrease {
-  height: 0;
-  width: 0;
-  border-width: 3px;
-  border-color: green transparent transparent transparent;
-  border-style: solid;
-  margin: 6px 0 0 5px;
-}
+ .decrease {
+   height: 0;
+   width: 0;
+   border-width: 3px;
+   border-color: green transparent transparent transparent;
+   border-style: solid;
+   margin: 6px 0 0 5px;
+ }
+
+ html .el-card__header {
+   border-bottom: none;
+   padding: 0;
+ }
