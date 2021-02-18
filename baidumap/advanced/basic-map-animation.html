@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Hello, World</title>
+  <style type="text/css">
+    html {
+      height: 100%
+    }
+
+    body {
+      height: 100%;
+      margin: 0px;
+      padding: 0px
+    }
+
+    #container {
+      height: 100%
+    }
+
+    #tools {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1000;
+    }
+  </style>
+  <script type="text/javascript"
+    src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=G1LFyjrNGIkns5OfpZnrCGAKxpycPLwb">
+    </script>
+</head>
+
+<body>
+  <div id="container"></div>
+  <div id="tools">
+    <button id="start">播放动画</button>
+    <button id="end">停止播放</button>
+  </div>
+  <script type="text/javascript">
+    var map = new BMapGL.Map("container");
+    // 创建地图实例 
+    var point = new BMapGL.Point(116.404, 39.915);
+    // 创建点坐标 
+    map.centerAndZoom(point, 15);
+    // center	Point	地图中心点，默认值为地图当前状态中心点
+    // zoom	Number	地图缩放级别，默认值为地图当前状态缩放级别
+    // tilt	Number	地图倾斜角度，默认值为地图当前状态倾斜角度
+    // heading	Number	地图旋转角度，默认值为地图当前旋转角度
+    // percentage	Number	表示当前关键帧处于动画过程的百分比，取值范围0~1
+
+    // var keyFrames = [{
+    //   center: new BMapGL.Point(116.404, 39.915),
+    //   zoom: 16,
+    //   tilt: 70,
+    //   heading: 0,
+    //   percentage: 0
+    // },
+    // {
+    //   center: new BMapGL.Point(116.504, 39.915),
+    //   zoom: 16,
+    //   tilt: 70,
+    //   heading: 0,
+    //   percentage: 0.5
+    // },
+    // {
+    //   center: new BMapGL.Point(116.604, 39.915),
+    //   zoom: 16,
+    //   tilt: 70,
+    //   heading: 0,
+    //   percentage: 1
+    // }]
+    // var opts = {
+    //   delay: 1000,
+    //   duration: 10000,
+    //   interation: 1
+    // };
+
+    var keyFrames = [
+      {
+        center: new BMapGL.Point(116.307092, 40.054922),
+        zoom: 20,
+        tilt: 50,
+        heading: 0,
+        percentage: 0
+      },
+      {
+        center: new BMapGL.Point(116.307631, 40.055391),
+        zoom: 21,
+        tilt: 70,
+        heading: 0,
+        percentage: 0.1
+      },
+      {
+        center: new BMapGL.Point(116.306858, 40.057887),
+        zoom: 21,
+        tilt: 70,
+        heading: 0,
+        percentage: 0.25
+      },
+      {
+        center: new BMapGL.Point(116.306858, 40.057887),
+        zoom: 21,
+        tilt: 70,
+        heading: -90,
+        percentage: 0.35
+      },
+      {
+        center: new BMapGL.Point(116.307904, 40.058118),
+        zoom: 21,
+        tilt: 70,
+        heading: -90,
+        percentage: 0.45
+      },
+      {
+        center: new BMapGL.Point(116.307904, 40.058118),
+        zoom: 21,
+        tilt: 70,
+        heading: -180,
+        percentage: 0.55
+      },
+      {
+        center: new BMapGL.Point(116.308902, 40.055954),
+        zoom: 21,
+        tilt: 70,
+        heading: -180,
+        percentage: 0.75
+      },
+      {
+        center: new BMapGL.Point(116.308902, 40.055954),
+        zoom: 21,
+        tilt: 70,
+        heading: -270,
+        percentage: 0.85
+      },
+      {
+        center: new BMapGL.Point(116.307779, 40.055754),
+        zoom: 21,
+        tilt: 70,
+        heading: -360,
+        percentage: 0.95
+      },
+      {
+        center: new BMapGL.Point(116.307092, 40.054922),
+        zoom: 20,
+        tilt: 50,
+        heading: -360,
+        percentage: 1
+      },
+    ];
+    var opts = {
+      duration: 10000,     // 设置每次迭代动画持续时间
+      delay: 3000,         // 设置动画延迟开始时间
+      interation: 'INFINITE'        // 设置动画迭代次数
+    };
+    // 初始化地图，设置中心点坐标和地图级别 
+    var animation = new BMapGL.ViewAnimation(keyFrames, opts)
+    animation.addEventListener('animationstart', function (e) {        // 监听动画开始事件
+      console.log('start');
+    });
+    animation.addEventListener('animationiterations', function (e) {   // 监听动画迭代事件
+      console.log('onanimationiterations');
+    });
+    animation.addEventListener('animationend', function (e) {        // 监听动画结束事件
+      console.log('end');
+    });
+    animation.addEventListener('animationcancel', function (e) {       // 监听动画中途被终止事件
+      console.log('cancel');
+    });
+    document.getElementById('start').addEventListener('click', function () {
+      map.startViewAnimation(animation);         // 开始播放动画
+    });
+    document.getElementById('end').addEventListener('click', function () {
+      map.cancelViewAnimation(animation);         // 强制停止动画
+    });
+
+
+  </script>
+</body>
+
+</html>
