@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Hello, World</title>
+  <style type="text/css">
+    html {
+      height: 100%
+    }
+
+    body {
+      height: 100%;
+      margin: 0px;
+      padding: 0px
+    }
+
+    #map_container {
+      height: 100%
+    }
+  </style>
+  <script type="text/javascript" src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=lCYheZQfEfOLb1fMf35FDtoBDZQFaoOE"></script>
+	<script src="https://mapv.baidu.com/gl/examples/static/common.js"></script>
+  <script src="https://mapv.baidu.com/build/mapv.js"></script>
+  <script src="https://code.bdstatic.com/npm/mapvgl@1.0.0-beta.54/dist/mapvgl.min.js"></script>
+	<script src="https://code.bdstatic.com/npm/mapvgl@1.0.0-beta.54/dist/mapvgl.threelayers.min.js"></script>
+
+</head>
+
+<body>
+  <div id="map_container"></div>
+  <script type="text/javascript">
+    
+    var map = initMap({
+			tilt: 30,
+			heading: 0,
+			center: [103.438656,25.753594],
+			zoom: 6,
+			style: purpleStyle
+		});
+		setData(initData(), map);
+		function initData() {
+			var data = [];
+			var citys = [
+				'北京', '天津', '上海', '重庆', '石家庄', '太原', '呼和浩特', '哈尔滨', '长春',
+				'沈阳', '济南', '南京', '合肥', '杭州', '南昌', '福州', '郑州', '武汉', '长沙', '广州',
+				'南宁', '西安', '银川', '兰州', '西宁', '乌鲁木齐', '成都', '贵阳', '昆明', '拉萨', '海口'
+			];
+   		
+			var targetCity = mapv.utilCityCenter.getCenterByCityName(citys[0])
+			var nodeData = [{
+				x: targetCity.lng,
+				y: targetCity.lat
+			}]
+			var edgeData = [{
+				source:0,
+				target:0
+			}]
+
+			for(var i =1;i<citys.length;i++){
+				var start = mapv.utilCityCenter.getCenterByCityName(citys[i]);
+				nodeData.push({
+					x: start.lng,
+					y:start.lat
+				})
+				edgeData.push({
+					source: i,
+					target: 0
+				})
+			}
+			var bunding = mapv.utilForceEdgeBundling().nodes(nodeData).edges(edgeData)
+			var results = bunding()
+			console.log(results);
+			for(var i =0;i<results.length;i++) {
+				var line = results[i]
+				var coordinates = []
+				for(var j =0;j<line.length;j++) {
+					coordinates.push([line[j].x,line[j].y])
+				}
+				data.push({
+					geometry: {
+						type: 'LineString',
+						coordinates
+					}
+				})
+			}
+			return data;
+		}
+		function setData(data,map) {
+			var view = new mapvgl.View({
+        map
+    	});
+			var flyLine = new mapvgl.FlyLineLayer({})
+			view.addLayer(flyLine);
+			flyLine.setData(data);
+
+			var linePointLayer = new mapvgl.LinePointLayer({
+					size: 5,
+					speed: 1,
+					color: 'rgba(255, 255, 0, 0.6)',
+					animationType: mapvgl.LinePointLayer.ANIMATION_TYPE_UNIFORM_SPEED,
+					shapeType: mapvgl.LinePointLayer.SHAPE_TYPE_CIRCLE,
+					blend: 'lighter'
+			});
+			view.addLayer(linePointLayer);
+			linePointLayer.setData(data);
+
+		}
+  </script>
+</body>
+
+</html>
