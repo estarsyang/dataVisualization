@@ -7,10 +7,10 @@
       <template v-slot:footer>
         <div class="compare">
           <span>日同比</span>
-          <span class="emphasis">7.33%</span>
+          <span class="emphasis">7.13%</span>
           <div class="increase"></div>
           <span class="month">月同比</span>
-          <span class="emphasis">7.33%</span>
+          <span class="emphasis">4.23%</span>
           <div class="decrease"></div>
         </div>
       </template>

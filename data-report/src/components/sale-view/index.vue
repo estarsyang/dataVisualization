@@ -169,22 +169,22 @@ export default {
         },
         {
           no: 2,
-          name: "麦当劳",
+          name: "华莱士",
           money: "123",
         },
         {
           no: 3,
-          name: "麦当劳",
+          name: "肯德基",
           money: "123",
         },
         {
           no: 4,
-          name: "麦当劳",
+          name: "兰州拉面",
           money: "123",
         },
         {
           no: 5,
-          name: "麦当劳",
+          name: "沙县小吃",
           money: "123",
         },
       ],

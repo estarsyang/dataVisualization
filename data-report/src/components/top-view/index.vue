@@ -4,7 +4,6 @@
       <el-col :span="6">
         <el-card class="box-card">
           <TotalSales />
-          
         </el-card>
       </el-col>
       <el-col :span="6">
@@ -14,12 +13,11 @@
       </el-col>
       <el-col :span="6">
         <el-card class="box-card">
-<TodayUsers />
+          <TodayUsers />
         </el-card>
       </el-col>
       <el-col :span="6">
         <el-card class="box-card">
-          
           <TotalUsers />
         </el-card>
       </el-col>
@@ -28,19 +26,19 @@
 </template>
 
 <script>
-import TotalOrders from '../total-orders'
-import TotalSales from '../total-sales'
-import TotalUsers from '../total-users'
-import TodayUsers from '../today-users'
+import TotalOrders from "../total-orders";
+import TotalSales from "../total-sales";
+import TotalUsers from "../total-users";
+import TodayUsers from "../today-users";
 export default {
-  name: 'topView',
+  name: "topView",
   components: {
     TotalOrders,
     TotalSales,
     TotalUsers,
     TodayUsers,
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">
