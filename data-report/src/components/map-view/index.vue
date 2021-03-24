@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import BmapScatter from "@/components/map-scatter";
-import LiquidFill from "@/components/liquid-fill";
-import WordCloud from "@/components/word-cloud";
+import BmapScatter from "./map-scatter";
+import LiquidFill from "./liquid-fill";
+import WordCloud from "./word-cloud";
 export default {
   name: "topView",
   components: {

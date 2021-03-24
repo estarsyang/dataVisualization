@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import TotalOrders from "../total-orders";
-import TotalSales from "../total-sales";
-import TotalUsers from "../total-users";
-import TodayUsers from "../today-users";
+import TotalOrders from "./total-orders";
+import TotalSales from "./total-sales";
+import TotalUsers from "./total-users";
+import TodayUsers from "./today-users";
 export default {
   name: "topView",
   components: {
