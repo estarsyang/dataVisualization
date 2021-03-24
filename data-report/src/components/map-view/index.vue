@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import BmapScatter from "./map-scatter";
-import LiquidFill from "./liquid-fill";
-import WordCloud from "./word-cloud";
+import BmapScatter from "./map-scatter/index-vue-echarts";
+import LiquidFill from "./liquid-fill/index-vue-echarts";
+import WordCloud from "./word-cloud/index-vue-echarts";
 export default {
   name: "topView",
   components: {
